@@ -1,7 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
-{{$user->name}}さん、こんにちは！
+
+@if(session('message'))
+<div class="alert alert-success">{{session('message')}}</div>
+@endif
+
+{{$user->name}}さんも投稿を共有しましょう！
 
 @foreach ($incidentPosts as $incidentPost)
 <div class="container-fluid mt-20" style="margin-left:-10px;">

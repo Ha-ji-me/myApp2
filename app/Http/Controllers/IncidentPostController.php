@@ -77,9 +77,9 @@ class IncidentPostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(IncidentPost $incidentPost)
     {
-        //
+        return view('incident_post.edit', compact('incidentPost'));
     }
 
     /**
@@ -89,9 +89,27 @@ class IncidentPostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, IncidentPost $incidentPost)
     {
-        //
+        $inputs=$request->validate([
+            'title'=>'required|max:255',
+            'body'=>'required|max:255',
+            'image'=>'image|max:1024'
+        ]);
+
+        $incidentPost->title=$inputs['title'];
+        $incidentPost->body=$inputs['body'];
+
+        if(request('image')){
+            $original=request()->file('image')->getClientOriginalName();
+            $name=date('Ymd_His').'_'.$original;
+            $file=request()->file('image')->move('storage/images', $name);
+            $incidentPost->image=$name;
+        }
+
+        $incidentPost->save();
+
+        return back()->with('message', '投稿を更新しました');
     }
 
     /**
@@ -100,8 +118,9 @@ class IncidentPostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(IncidentPost $incidentPost)
     {
-        //
+        $incidentPost->delete();
+        return redirect()->route('home')->with('message', '投稿を削除しました');
     }
 }
