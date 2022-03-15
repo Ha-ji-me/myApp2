@@ -153,6 +153,10 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        'title'=>'タイトル',
+        'body'=>'内容',
+        'image'=>'画像',
+    ],
 
 ];

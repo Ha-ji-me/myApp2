@@ -35,7 +35,19 @@ class IncidentPostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $inputs=$request->validate
+        ([
+            'title'=>'required|max:255',
+            'body'=>'required|max:255',
+            'image'=>'image|max:1024'
+        ]);
+        $incidentPost = new IncidentPost();
+        $incidentPost->title=$request->title;
+        $incidentPost->body=$request->body;
+        $incidentPost->user_id=auth()->user()->id;
+        $incidentPost->save();
+        return redirect()->route('incident-post.create')->with('message', '投稿を作成しました');
+
     }
 
     /**
