@@ -31,3 +31,4 @@ Route::get('/test', function(){
 
 
 Route::resource('/incident-post', 'IncidentPostController');
+

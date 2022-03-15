@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\IncidentPost;
 
 class HomeController extends Controller
 {
@@ -23,6 +24,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $incidentPosts=IncidentPost::orderBy('created_at','desc')->get();
+        $user=auth()->user();
+        return view('home', compact('incidentPosts', 'user'));
+
     }
 }
