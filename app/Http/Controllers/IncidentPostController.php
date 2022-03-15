@@ -45,6 +45,16 @@ class IncidentPostController extends Controller
         $incidentPost->title=$request->title;
         $incidentPost->body=$request->body;
         $incidentPost->user_id=auth()->user()->id;
+
+        if (request('image'))
+        {
+            $original = request()->file('image')->getClientOriginalName();
+             // 日時追加
+            $name = date('Ymd_His').'_'.$original;
+            request()->file('image')->move('storage/images', $name);
+            $incidentPost->image = $name;
+        }
+
         $incidentPost->save();
         return redirect()->route('incident-post.create')->with('message', '投稿を作成しました');
 
