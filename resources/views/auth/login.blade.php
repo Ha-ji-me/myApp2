@@ -1,6 +1,16 @@
 @extends('layouts.app')
 
 @section('content')
+<div class="jumbotron text-gray  d-flex align-items-center"
+style="background:url({{asset('')}});background-size:cover;height:300px;">
+    <div class="col-12 col-md-8 col-lg-6 mx-auto">
+        <h1 class="mb-3" style="text-align: center; font-weight: bold;">
+            問題を共有し
+            <br/>真実を共有しよう
+            <br/>そして高め合おう
+        </h1>
+    </div>
+</div>
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
