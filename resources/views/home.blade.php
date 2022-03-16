@@ -8,6 +8,18 @@
 
 {{$user->name}}さんも投稿を共有しましょう！
 
+<!-- 検索機能 -->
+<div class=" d-flex justify-content-center ">
+    <form class="form-inline my-2 my-lg-0 ml-2" style="height: 100px;" >
+        <div class="form-group">
+            <input type="search" class="form-control mr-sm-2" style="width: 350px; border-radius:70px;" name="search"  value="{{request('search')}}" placeholder="  キーワードを入力" aria-label="検索...">
+        </div>
+        <button type="submit" class="btn btn-info" style="border-radius:70px;">
+            <span> 検索</span>
+        </button>
+    </form>
+</div>
+
 @foreach ($incidentPosts as $incidentPost)
 <div class="container-fluid mt-20" style="margin-left:-10px;">
     <div class="row">
