@@ -37,6 +37,7 @@
     </div>
 </div>
 
+<!-- コメント入力欄 -->
 <hr>
 @foreach ($incidentPost->comments as $comment)
 <div class="card mb-4">

@@ -7,13 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class IncidentPost extends Model
 {
-    // use HasFactory;
-    // protected $fillable = [
-    //     'title',
-    //     'body',
-    //     'user_id',
-    //     'image',
-    // ];
+    use HasFactory;
+    protected $fillable = [
+        'title',
+        'body',
+        'user_id',
+        'image',
+    ];
 
     public function user()
     {

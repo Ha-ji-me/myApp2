@@ -7,12 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Comment extends Model
 {
-    // use HasFactory;
-    // protected $fillable = [
-    //     'body',
-    //     'user_id',
-    //     'incident_post_id'
-    // ];
+    use HasFactory;
+    protected $fillable = [
+        'body',
+        'user_id',
+        'incident_post_id'
+    ];
 
     public function incidentPost() {
         return $this->belongsTo('App\Models\IncidentPost');
