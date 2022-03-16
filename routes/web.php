@@ -13,23 +13,30 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Route::get('/home', function() {
     return view('home');
 });
 
-Auth::routes();
-
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/test', function(){
-    return view('test');
+
+Auth::routes();
+Route::get('/', function () {
+    return view('auth.login');
 });
 
 
+// 出来事投稿crud
 Route::resource('/incident-post', 'IncidentPostController');
+// コメント機能
 Route::post('/incident-post/comment/store', 'CommentController@store')->name('comment.store');
-
+// 自分の投稿ページ
+Route::get('/mypost', 'HomeController@mypost')->name('home.mypost');
+// コメントした投稿ページ
+Route::get('/mycomment', 'HomeController@mycomment')->name('home.mycomment');
+// お気に入り投稿ページ
+// 管理者ページ

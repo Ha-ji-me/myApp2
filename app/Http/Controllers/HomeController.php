@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\IncidentPost;
+use App\Models\Comment;
 
 class HomeController extends Controller
 {
@@ -25,8 +26,20 @@ class HomeController extends Controller
     public function index()
     {
         $incidentPosts=IncidentPost::orderBy('created_at','desc')->get();
-        $user=auth()->user();
+        $user = auth()->user();
         return view('home', compact('incidentPosts', 'user'));
+    }
 
+    public function myPost()
+    {
+        $user = auth()->user()->id;
+        $incidentPosts = IncidentPost::where('user_id', $user)->orderBy('created_at', 'desc')->get();
+        return view('my_post', compact('incidentPosts'));
+    }
+
+    public function myComment() {
+        $user = auth()->user()->id;
+        $comments = Comment::where('user_id', $user)->orderBy('created_at', 'desc')->get();
+        return view('my_comment', compact('comments'));
     }
 }
