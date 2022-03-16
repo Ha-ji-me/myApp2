@@ -42,8 +42,14 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function IncidentPosts() {
+
+
+    public function incidentPosts() {
         return $this->hasMany('App\Models\IncidentPost');
+    }
+
+    public function comments() {
+        return $this->hasMany('App\Models\Comment');
     }
 
 }

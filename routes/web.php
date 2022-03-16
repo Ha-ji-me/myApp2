@@ -31,4 +31,5 @@ Route::get('/test', function(){
 
 
 Route::resource('/incident-post', 'IncidentPostController');
+Route::post('/incident-post/comment/store', 'CommentController@store')->name('comment.store');
 

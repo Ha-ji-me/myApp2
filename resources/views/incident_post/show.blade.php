@@ -37,4 +37,48 @@
     </div>
 </div>
 
+<hr>
+@foreach ($incidentPost->comments as $comment)
+<div class="card mb-4">
+
+    <div class="card-header">
+        {{$comment->user->name}}
+    </div>
+    <div class="card-body">
+        {{$comment->body}}
+    </div>
+    <div class="card-footer">
+        <span class="mr-2 float-right">
+            投稿日時 {{$comment->created_at->diffForHumans()}}
+        </span>
+    </div>
+</div>
+@endforeach
+
+<!-- バリデーションエラーの表示 -->
+@if ($errors->any())
+<div class="alert alert-danger">
+    <ul>
+        @foreach ($errors->all() as $error)
+        <li>{{ $error }}</li>
+        @endforeach
+    </ul>
+</div>
+@endif
+
+<!-- コメントフォーム -->
+<div class="card mb-4">
+    <form method="post" action="{{route('comment.store')}}">
+        @csrf
+        <input type="hidden" name='incident_post_id' value="{{$incidentPost->id}}">
+        <div class="form-group">
+            <textarea name="body" class="form-control" id="body" cols="30" rows="5"
+            placeholder="コメントを入力する">{{old('body')}}</textarea>
+        </div>
+        <div class="form-group">
+        <button class="btn btn-success float-right mb-3 mr-3">コメントする</button>
+        </div>
+    </form>
+</div>
+
 @endsection
