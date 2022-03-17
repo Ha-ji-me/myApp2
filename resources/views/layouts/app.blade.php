@@ -78,6 +78,21 @@
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                             <!-- 自分の投稿 -->
+                                <i class="fas fa-user-edit pr-2">
+                                自分の投稿
+                                </i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item {{url()->current()==route('home.mypost')?'active':''}}" href="{{ route('home.mypost') }}">
+                                    <!-- <i class="fas fa-user-edit pr-2"> -->
+                                    出来事の投稿
+                                    <!-- </i> -->
+                                </a>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                            <!-- アクションした投稿 -->
                                 <i class="fas fa-light fa-solid fa-heart">
                                 myアクション
                                 </i>
@@ -100,6 +115,7 @@
                     </a>
                     @endcan
 
+
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
                         <!-- Authentication Links -->
@@ -118,6 +134,9 @@
                         @else
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                <!-- ログインユーザーのプロフィール画像も表示 -->
+                                <img src="{{asset('storage/avatar/'.($user->avatar??'user_default.jpg'))}}"
+                                    class="rounded-circle" style="width:40px;height:40px;">
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
 
@@ -132,12 +151,20 @@
                                         @csrf
                                     </form>
                                 </div> -->
+
+                                <!-- メニューバー項目 -->
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <!-- プロフィール編集バー追加 -->
+                                    <a class="dropdown-item" href="{{ route('profile.edit', auth()->user()->id) }}">
+                                        <!-- <i class="fas fa-solid fa-address-card"></i> -->
+                                        <i class="fas fa-user-edit"></i>
+                                        プロフィール編集
+                                    </a>
                                     <!-- ログアウトバー -->
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
                                                     document.getElementById('logout-form').submit();">
-
+                                                    <i class="fas fa-sign-out-alt"></i>
                                         {{ __('ログアウト') }}
                                     </a>
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

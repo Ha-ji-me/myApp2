@@ -43,3 +43,6 @@ Route::get('/mycomment', 'HomeController@mycomment')->name('home.mycomment');
 Route::middleware(['can:admin'])->group(function() {
     Route::get('/profile/index', 'ProfileController@index')->name('profile.index');
 });
+//プロフィール編集ページ
+Route::get('/profile/{user}/edit', 'ProfileController@edit')->name('profile.edit');
+Route::put('/profile/{user}', 'ProfileController@update')->name('profile.update');
