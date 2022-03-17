@@ -42,14 +42,14 @@ class HomeController extends Controller
     {
         $user = auth()->user();
         $userId = auth()->user()->id;
-        $incidentPosts = IncidentPost::where('user_id', $userId)->orderBy('created_at', 'desc')->get();
+        $incidentPosts = IncidentPost::where('user_id',$userId)->orderBy('created_at','desc')->paginate(10);
         return view('my_post', compact('incidentPosts','user'));
     }
 
     public function myComment() {
         $user = auth()->user();
         $userId = auth()->user()->id;
-        $comments = Comment::where('user_id', $userId)->orderBy('created_at', 'desc')->get();
+        $comments = Comment::where('user_id',$userId)->orderBy('created_at','desc')->paginate(10);
         return view('my_comment', compact('comments','user'));
     }
 

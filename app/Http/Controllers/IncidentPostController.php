@@ -63,7 +63,7 @@ class IncidentPostController extends Controller
         }
 
         $incidentPost->save();
-        return redirect()->route('incident-post.create')->with('message', '投稿を作成しました');
+        return redirect()->route('home')->with('message', '投稿を作成しました');
 
     }
 
@@ -122,7 +122,7 @@ class IncidentPostController extends Controller
 
         $incidentPost->save();
 
-        return back()->with('message', '投稿を更新しました');
+        return redirect('home')->with('message', '投稿を更新しました');
     }
 
     /**

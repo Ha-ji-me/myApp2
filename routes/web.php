@@ -28,6 +28,7 @@ Auth::routes();
 Route::get('/', function () {
     return view('auth.login');
 });
+Route::get('/', 'HomeController@login')->middleware('guest');
 
 
 // 出来事投稿crud
