@@ -12,6 +12,10 @@
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
 
+    <!-- fontAwesome6でアイコン取得 -->
+    <script src="https://kit.fontawesome.com/1646a14d8e.js" crossorigin="anonymous"></script>
+
+
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
@@ -38,9 +42,57 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
+                    @if(Auth::check())
                     <ul class="navbar-nav me-auto">
+                        <!-- メニューバー追加 -->
+                        <li class="nav-item dropdown">
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                            <!-- みんなの投稿 -->
+                            <i class="fas fa-home pr-2">
+                            みんなの投稿
+                            </i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item {{url()->current()==route('home')? 'active' : ''}}" href="{{ route('home') }}">
+                                    <!-- <i class="fas fa-home pr-2"> -->
+                                    出来事の投稿
+                                    <!-- </i> -->
+                                </a>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                            <!-- 投稿の作成 -->
+                                <i class="fas fa-pen-nib pr-2">
+                                新規投稿
+                                </i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item {{url()->current()==route('incident-post.create')? 'active' : ''}}" href="{{ route('incident-post.create') }}">
+                                    <!-- <i class="fas fa-pen-nib pr-2"> -->
+                                        出来事の新規投稿
+                                    <!-- </i> -->
+                                </a>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                            <!-- 自分の投稿 -->
+                                <i class="fas fa-light fa-solid fa-heart">
+                                myアクション
+                                </i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item {{url()->current()==route('home.mycomment')?'active':''}}" href="{{ route('home.mycomment') }}">
+                                    <!-- <i class="fas fa-light fa-comments pr-2"> -->
+                                        コメントした投稿
+                                    <!-- </i> -->
+                                </a>
+                            </div>
+                        </li>
 
                     </ul>
+                    @endif
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
