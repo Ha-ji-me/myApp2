@@ -49,3 +49,7 @@ Route::put('/roles/{user}/detach', 'RoleController@detach')->name('role.detach')
 //プロフィール編集ページ
 Route::get('/profile/{user}/edit', 'ProfileController@edit')->name('profile.edit');
 Route::put('/profile/{user}', 'ProfileController@update')->name('profile.update');
+// todoページ
+Route::get('/todo-post','TodoPostController@index')->name('todo-post.index');
+Route::get('/todo-post/create','TodoPostController@create')->name('todo-post.create');
+Route::post('/todo-post/store','TodoPostController@store')->name('todo-post.store');

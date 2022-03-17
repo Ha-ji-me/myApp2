@@ -58,6 +58,11 @@
                                     出来事の投稿
                                     <!-- </i> -->
                                 </a>
+                                <a class="dropdown-item {{url()->current()==route('todo-post.index')?'active':''}}" href="{{ route('todo-post.index') }}">
+                                    <!-- <i class="fas fa-fire"> -->
+                                    Todoの投稿
+                                    <!-- </i> -->
+                                </a>
                             </div>
                         </li>
                         <li class="nav-item dropdown">
@@ -73,6 +78,11 @@
                                         出来事の新規投稿
                                     <!-- </i> -->
                                 </a>
+                                <a class="dropdown-item {{url()->current()==route('todo-post.create')?'active':''}}" href="{{ route('todo-post.create') }}">
+                                    <!-- <i class="fas fa-pen-nib pr-2"> -->
+                                        Todoの新規投稿
+                                    <!-- </i> -->
+                                </a>
                             </div>
                         </li>
                         <li class="nav-item dropdown">
@@ -86,6 +96,11 @@
                                 <a class="dropdown-item {{url()->current()==route('home.mypost')?'active':''}}" href="{{ route('home.mypost') }}">
                                     <!-- <i class="fas fa-user-edit pr-2"> -->
                                     出来事の投稿
+                                    <!-- </i> -->
+                                </a>
+                                <a class="dropdown-item {{url()->current()==route('todo-post.index')?'active':''}}" href="{{ route('todo-post.index') }}">
+                                    <!-- <i class="fas fa-fire"> -->
+                                    Todoの投稿
                                     <!-- </i> -->
                                 </a>
                             </div>
