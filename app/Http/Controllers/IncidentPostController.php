@@ -7,6 +7,11 @@ use App\Models\IncidentPost;
 
 class IncidentPostController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -24,7 +29,8 @@ class IncidentPostController extends Controller
      */
     public function create()
     {
-        return view('incident_post.create');
+        $user = auth()->user();
+        return view('incident_post.create',compact('user'));
     }
 
     /**

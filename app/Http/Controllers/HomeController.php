@@ -38,14 +38,16 @@ class HomeController extends Controller
 
     public function myPost()
     {
-        $user = auth()->user()->id;
-        $incidentPosts = IncidentPost::where('user_id', $user)->orderBy('created_at', 'desc')->get();
-        return view('my_post', compact('incidentPosts'));
+        $user = auth()->user();
+        $userId = auth()->user()->id;
+        $incidentPosts = IncidentPost::where('user_id', $userId)->orderBy('created_at', 'desc')->get();
+        return view('my_post', compact('incidentPosts','user'));
     }
 
     public function myComment() {
-        $user = auth()->user()->id;
-        $comments = Comment::where('user_id', $user)->orderBy('created_at', 'desc')->get();
-        return view('my_comment', compact('comments'));
+        $user = auth()->user();
+        $userId = auth()->user()->id;
+        $comments = Comment::where('user_id', $userId)->orderBy('created_at', 'desc')->get();
+        return view('my_comment', compact('comments','user'));
     }
 }

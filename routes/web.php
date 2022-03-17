@@ -42,6 +42,9 @@ Route::get('/mycomment', 'HomeController@mycomment')->name('home.mycomment');
 // 管理者ページ
 Route::middleware(['can:admin'])->group(function() {
     Route::get('/profile/index', 'ProfileController@index')->name('profile.index');
+    Route::delete('/profile/delete/{user}', 'ProfileController@delete')->name('profile.delete');
+    Route::put('/roles/{user}/attach', 'RoleController@attach')->name('role.attach');
+Route::put('/roles/{user}/detach', 'RoleController@detach')->name('role.detach');
 });
 //プロフィール編集ページ
 Route::get('/profile/{user}/edit', 'ProfileController@edit')->name('profile.edit');
