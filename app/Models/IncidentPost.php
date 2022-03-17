@@ -24,4 +24,9 @@ class IncidentPost extends Model
         return $this->hasMany('App\Models\Comment');
     }
 
+    public function favorites()
+    {
+        return $this->hasMany('App\Models\Favorite');
+    }
+
 }

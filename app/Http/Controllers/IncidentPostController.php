@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\IncidentPost;
+use App\Models\Favorite;
 
 class IncidentPostController extends Controller
 {
@@ -74,7 +75,9 @@ class IncidentPostController extends Controller
      */
     public function show(IncidentPost $incidentPost)
     {
-        return view('incident_post.show', compact('incidentPost'));
+        $user = auth()->user();  //ナビバー部分(app.blade)にユーザーアイコンを渡すため
+        $favorite = Favorite::where('incident_post_id', $incidentPost->id)->where('user_id', auth()->user()->id)->first();
+        return view('incident_post.show',compact('incidentPost', 'favorite', 'user'));
     }
 
     /**
