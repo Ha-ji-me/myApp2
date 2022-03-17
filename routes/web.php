@@ -40,4 +40,6 @@ Route::get('/mypost', 'HomeController@mypost')->name('home.mypost');
 Route::get('/mycomment', 'HomeController@mycomment')->name('home.mycomment');
 // お気に入り投稿ページ
 // 管理者ページ
-Route::get('/profile/index', 'ProfileController@index')->name('profile.index');
+Route::middleware(['can:admin'])->group(function() {
+    Route::get('/profile/index', 'ProfileController@index')->name('profile.index');
+});

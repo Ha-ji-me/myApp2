@@ -90,9 +90,15 @@
                                 </a>
                             </div>
                         </li>
-
                     </ul>
                     @endif
+                    <!-- 管理者用ページ -->
+                    @can('admin')
+                    <a href="{{route('profile.index')}}"
+                    class=" {{url()->current()==route('profile.index')?'active':''}}">
+                        <i class="fas fa-user-edit pr-2" style="color: #686b68;"></i><span>ユーザーアカウント</span>
+                    </a>
+                    @endcan
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">

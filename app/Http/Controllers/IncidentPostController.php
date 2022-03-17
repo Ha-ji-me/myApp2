@@ -79,6 +79,8 @@ class IncidentPostController extends Controller
      */
     public function edit(IncidentPost $incidentPost)
     {
+        $this->authorize('update', $incidentPost);
+
         return view('incident_post.edit', compact('incidentPost'));
     }
 
@@ -91,6 +93,8 @@ class IncidentPostController extends Controller
      */
     public function update(Request $request, IncidentPost $incidentPost)
     {
+        $this->authorize('update', $incidentPost);
+
         $inputs=$request->validate([
             'title'=>'required|max:255',
             'body'=>'required|max:255',
@@ -120,6 +124,8 @@ class IncidentPostController extends Controller
      */
     public function destroy(IncidentPost $incidentPost)
     {
+        $this->authorize('delete', $incidentPost);
+
         $incidentPost->comments()->delete();
         $incidentPost->delete();
         return redirect()->route('home')->with('message', '投稿を削除しました');
