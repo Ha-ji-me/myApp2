@@ -7,9 +7,12 @@
             {{$incidentPost->user->name}}
         </div>
         <h4>{{$incidentPost->title}}</h4>
+        @can('update', $incidentPost)
         <span class="ml-auto">
         <a href="{{route('incident-post.edit', $incidentPost)}}"><button class="btn btn-primary">編集</button></a>
         </span>
+        @endcan
+        @can('delete', $incidentPost)
         <span class="ml-2">
             <form method="post" action="{{route('incident-post.destroy', $incidentPost)}}">
             @csrf
@@ -17,6 +20,7 @@
             <button type="submit" class="btn btn-danger" onClick="return confirm('本当に削除しますか？');">削除</button>
             </form>
         </span>
+        @endcan
     </div>
     <div class="card-body">
         <p class="card-text">
