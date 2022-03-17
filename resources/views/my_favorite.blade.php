@@ -4,19 +4,18 @@
 @if(session('message'))
 <div class="alert alert-success">{{session('message')}}</div>
 @endif
-
 <div class="ml-2 mb-3">
-    <h2 style="text-align:center">コメントした投稿<h2>
+    <h2 style="text-align:center">お気に入りにした投稿<h2>
 </div>
 
-@if (count($comments) == 0)
+@if (count($favorites) == 0)
 <h4 style="text-align: center;">
-＊あなたがコメントした投稿はまだありません
+＊あなたがお気に入りにした投稿はまだありません
 </h4>
 @else
-@foreach ($comments->unique('incident_post_id') as $comment)
+@foreach ($favorites->unique('incident_post_id') as $favorite)
 @php
-    $incidentPost = $comment->incidentPost;
+    $incidentPost = $favorite->incidentPost;
 @endphp
 <div class="container-fluid mt-20" style="margin-left:-10px;">
     <div class="row">
@@ -27,9 +26,9 @@
                         <img src="{{asset('storage/avatar/'.($incidentPost->user->avatar??'user_default.jpg'))}}"
                         class="rounded-circle" style="width:40px;height:40px;">
                         <div class="media-body ml-3">
-                            <a href="{{route('incident-post.show', $incidentPost)}}" class="text-dark">
-                                {{$incidentPost->title}}
-                            </a>
+                        <a href="{{route('incident-post.show', $incidentPost)}}" class="text-dark">
+                            {{$incidentPost->title}}
+                        </a>
                             <div class="text-muted small">{{$incidentPost->user->name ?? '削除されたユーザー'}}</div>
                         </div>
                         <div class="text-muted small ml-3">
@@ -74,7 +73,7 @@
 
                     <div class="px-4 pt-3">
                         <button type="button" class="btn btn-primary">
-                            <a href="{{route('incident-post.show', $incidentPost)}}" style="color:white;">詳細を見る</a>
+                            <a href="{{route('incident-post.show', $incidentPost)}}" style="color:white;">コメントする</a>
                         </button> </div>
                 </div>
             </div>
@@ -84,7 +83,7 @@
 @endforeach
 
 <div class="d-flex justify-content-center ">
-{{ $comments->links() }}
+{{ $favorites->links() }}
 </div>
 
 @endif

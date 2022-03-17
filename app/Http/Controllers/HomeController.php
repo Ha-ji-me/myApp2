@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\IncidentPost;
 use App\Models\Comment;
+use App\Models\Favorite;
+use App\Models\TodoPost;
 
 class HomeController extends Controller
 {
@@ -49,5 +51,13 @@ class HomeController extends Controller
         $userId = auth()->user()->id;
         $comments = Comment::where('user_id', $userId)->orderBy('created_at', 'desc')->get();
         return view('my_comment', compact('comments','user'));
+    }
+
+    public function myFavorite()
+    {
+        $user = auth()->user();
+        $userId = auth()->user()->id;
+        $favorites = Favorite::where('user_id', $userId)->orderBy('created_at','desc')->paginate(10);
+        return view('my_favorite', compact('favorites','user'));
     }
 }

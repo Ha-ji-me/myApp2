@@ -38,6 +38,7 @@ Route::post('/incident-post/comment/store', 'CommentController@store')->name('co
 Route::get('/mypost', 'HomeController@mypost')->name('home.mypost');
 // コメントした投稿ページ
 Route::get('/mycomment', 'HomeController@mycomment')->name('home.mycomment');
+// 投稿したtodoページ
 // お気に入り投稿ページ
 // 管理者ページ
 Route::middleware(['can:admin'])->group(function() {
@@ -49,7 +50,11 @@ Route::put('/roles/{user}/detach', 'RoleController@detach')->name('role.detach')
 //プロフィール編集ページ
 Route::get('/profile/{user}/edit', 'ProfileController@edit')->name('profile.edit');
 Route::put('/profile/{user}', 'ProfileController@update')->name('profile.update');
-// todoページ
+//todoページ
 Route::get('/todo-post','TodoPostController@index')->name('todo-post.index');
 Route::get('/todo-post/create','TodoPostController@create')->name('todo-post.create');
 Route::post('/todo-post/store','TodoPostController@store')->name('todo-post.store');
+//お気に入り
+Route::get('/reply/favorite/{incidentPost}', 'FavoriteController@favorite')->name('favorite');
+Route::get('/reply/unfavorite/{incidentPost}', 'FavoriteController@unfavorite')->name('unfavorite');
+Route::get('/my-favorite','HomeController@myFavorite')->name('home.myFavorite');

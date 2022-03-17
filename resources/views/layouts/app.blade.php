@@ -118,6 +118,11 @@
                                         コメントした投稿
                                     <!-- </i> -->
                                 </a>
+                                <a class="dropdown-item {{url()->current()==route('home.myFavorite')?'active':''}}" href="{{ route('home.myFavorite') }}">
+                                    <!-- <i class="fas fa-light fa-solid fa-heart"> -->
+                                        お気に入りした投稿
+                                    <!-- </i> -->
+                                </a>
                             </div>
                         </li>
                     </ul>
