@@ -27,7 +27,9 @@
             <div class="card mb-4">
                 <!-- ヘッダー -->
                 <div class="card-header">
-                    <div class="media flex-wrap w-100 align-items-center">
+                <div class="media flex-wrap w-100 align-items-center">
+                        <img src="{{asset('storage/avatar/'.($incidentPost->user->avatar??'user_default.jpg'))}}"
+                        class="rounded-circle" style="width:40px;height:40px;">
                         <!-- タイトル -->
                         <div class="media-body ml-3">
                             <a href="{{route('incident-post.show', $incidentPost)}}">
