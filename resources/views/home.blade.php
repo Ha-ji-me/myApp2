@@ -37,7 +37,7 @@
                             </a>
                             <!-- ユーザー名 -->
                             <div class="text-muted small">
-                                {{ $incidentPost->user->name }}
+                                {{ $incidentPost->user->name??'削除されたユーザ' }}
                             </div>
                         </div>
                         <div class="text-muted small ml-3">
