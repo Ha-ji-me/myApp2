@@ -5,10 +5,13 @@
 style="background:url({{asset('')}});background-size:cover;height:300px;">
     <div class="col-12 col-md-8 col-lg-6 mx-auto">
         <h1 class="mb-3" style="text-align: center; font-weight: bold;">
-            問題を共有し
-            <br/>真実を共有しよう
-            <br/>そして高め合おう
+        Aureola
         </h1>
+        <h6 style="text-align: center; font-weight: bold;">
+        駆け出しエンジニア向け情報共有サイトです。
+        </br>日々の学習におけるエラーや出来事を共有し、ユーザー同士が互いに成長する環境を提供します。
+        </br>タスクを共有することでやる気を向上させましょう
+        </p>
     </div>
 </div>
 <div class="container">
