@@ -199,8 +199,16 @@
         </nav>
 
         <main class="py-4">
+            @if(Auth::check())
+            <div class="container">
+                {{-- メイン（投稿一覧の表示） --}}
+                @yield('content')
+            </div>
+            @else
             @yield('content')
+            @endif
         </main>
+        
     </div>
 </body>
 </html>
