@@ -40,6 +40,7 @@ Route::get('/mypost', 'HomeController@mypost')->name('home.mypost');
 // コメントした投稿ページ
 Route::get('/mycomment', 'HomeController@mycomment')->name('home.mycomment');
 // 投稿したtodoページ
+Route::get('/my-todo','TodoPostController@myTodo')->name('todo-post.mypost');
 // お気に入り投稿ページ
 // 管理者ページ
 Route::middleware(['can:admin'])->group(function() {

@@ -98,8 +98,8 @@
                                     出来事の投稿
                                     <!-- </i> -->
                                 </a>
-                                <a class="dropdown-item {{url()->current()==route('todo-post.index')?'active':''}}" href="{{ route('todo-post.index') }}">
-                                    <!-- <i class="fas fa-fire"> -->
+                                <a class="dropdown-item {{url()->current()==route('todo-post.mypost')?'active':''}}" href="{{ route('todo-post.mypost') }}">
+                                    <!-- <i class="fas fa-user-edit pr-2"> -->
                                     Todoの投稿
                                     <!-- </i> -->
                                 </a>
