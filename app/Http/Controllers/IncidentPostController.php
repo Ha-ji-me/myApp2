@@ -44,8 +44,8 @@ class IncidentPostController extends Controller
     {
         $inputs=$request->validate
         ([
-            'title'=>'required|max:255',
-            'body'=>'required|max:255',
+            'title'=>'required|max:30',
+            'body'=>'required|max:700',
             'image'=>'image|max:1024'
         ]);
         $incidentPost = new IncidentPost();
