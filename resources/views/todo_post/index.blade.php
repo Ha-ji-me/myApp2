@@ -19,9 +19,9 @@
                         <!-- タイトル -->
                         <div class="media-body ml-3">
                             {{-- <a href="{{route('todo-post.create',$todoPost)}}"> --}}
-                            <a>
+                            <h6>
                                 {{$todoPost->title}}
-                            </a>
+                            </h6>
                             <!-- ユーザー名 -->
                             <div class="text-muted small"> {{$todoPost->user->name ?? '削除されたユーザー'}}</div>
                         </div>
@@ -41,7 +41,7 @@
                 <!-- カードフッター -->
                 <div class="card-footer d-flex flex-wrap justify-content-between align-items-center px-0 pt-0 pb-3">
                     <div class="px-4 pt-3">
-                    
+
                     </div>
                     <!-- <div class="px-4 pt-3">
                         <button type="button" class="btn btn-primary">
