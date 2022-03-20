@@ -1,65 +1,42 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+# Aureola
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+駆け出しエンジニアが気軽にエラーや有益な情報、それぞれのタスクを共有し合い、ユーザーが互いに成長することを目的としたアプリケーション
 
-## About Laravel
+## URL
+アプリは現在herokuで公開しています
+![デモ](https://secret-inlet-50812.herokuapp.com/)
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## 使い方
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+1. 利用にはユーザ登録が必須となっています。
+2. ログイン後のHomeは出来事投稿ページとなっており、検索barから特定の投稿を探すことができます。
+3. 画面上部のメニューバーから、「新規投稿」「条件を絞った投稿の参照」ページに飛ぶことができます。スマホの場合、右上ドロップダウンメニューから選択できます。
+4. 右上ドロップダウンメニューから、ユーザー情報の編集とログアウトが行えます。
 
-## Learning Laravel
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## 環境,言語,ツール
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+* 環境:MacOS,LinuxOS
+* 言語:PHP,Laravel
+* ツール:Git,Heroku,SequelAce,Trero
+* 学習:Progate,参考書,Qiita,teratail
 
-## Laravel Sponsors
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+## 機能一覧
 
-### Premium Partners
+* 認証,検索,投稿,コメント,お気に入り,管理者
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
 
-## Contributing
+## ER図
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
 
-## Code of Conduct
+## なぜ作ろうと思ったか
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
-＃myApp2
+* 私がプログラミング学習をしてきた中で、プログラミング学習は初学者にとって難しく挫折しやすいと実際に感じました。しかし、プログラミングの魅力に気づく前にただ難しいものと認識して終わってしまう人が挫折者のほとんどだというのは何だか寂しいなと思いました。もし同じような気持ちの人が近くにいれば、同じような状況の人が近くにいれば少しは前向きに頑張れるのに。私自身独学で学習をしてきて常にそのような感情を抱いていました。
+</br>
+プログラミングが流行していく中、それと同時に駆け出しエンジニアが心無い発言をされているような場面も多々目にしました。自分を含む駆け出しエンジニアたちに寄り添ってくれるアプリがあればいいのになと思いました。
+</br>
+そこで、駆け出しエンジニアが前向きに、気軽に、プログラミングについての情報共有を行いながら、タスクを投稿共有することによって学習意欲を向上させられるようにと作ったのがこのアプリです。
+</br>
+開発していく中で、欲しいと思った未実装の機能もまだあるので、今後も個人的にアップデートしていけたらいいなと思っています！
