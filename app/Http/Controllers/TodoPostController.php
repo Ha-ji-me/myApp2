@@ -32,7 +32,7 @@ class TodoPostController extends Controller
     {
         $inputs = $request->validate([
             'title'=>'required|max:20',
-            'body'=>'required|max:100'
+            'body'=>'required|max:300'
         ]);
 
         $todoPost = new TodoPost();
