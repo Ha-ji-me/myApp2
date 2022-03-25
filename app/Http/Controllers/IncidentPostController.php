@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\IncidentPost;
 use App\Models\Favorite;
+use Storage;
 
 class IncidentPostController extends Controller
 {
@@ -53,13 +54,23 @@ class IncidentPostController extends Controller
         $incidentPost->body=$request->body;
         $incidentPost->user_id=auth()->user()->id;
 
-        if (request('image'))
-        {
-            $original = request()->file('image')->getClientOriginalName();
-             // 日時追加
-            $name = date('Ymd_His').'_'.$original;
-            request()->file('image')->move('storage/images', $name);
-            $incidentPost->image = $name;
+        // if (request('image'))
+        // {
+        //     $original = request()->file('image')->getClientOriginalName();
+        //      // 日時追加
+        //     $name = date('Ymd_His').'_'.$original;
+        //     request()->file('image')->move('storage/images', $name);
+
+        //     $incidentPost->image = $name;
+        // }
+
+        // AWS用記述
+        if(request('image')){
+            $name = request()->file('image')->getClientOriginalName();
+            // $name = date('Ymd_His').'_'.$original;
+            $path = Storage::disk('s3')->put('/test',$name,'public');
+            $incidentPost->image = Storage::disk('s3')->url($path);
+
         }
 
         $incidentPost->save();

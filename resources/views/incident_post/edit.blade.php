@@ -48,7 +48,7 @@
                         <input id="image" type="file" name="image">
                     </div>
                 </div>
-
+                
                 <button type="submit" class="btn btn-success">送信する</button>
             </form>
         </div>
