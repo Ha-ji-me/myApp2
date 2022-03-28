@@ -94,7 +94,7 @@
         </div>
     </div>
     <div class="card-body">
-        {{$comment->body}}
+        {!! nl2br(htmlspecialchars($comment->body)) !!}
     </div>
     <div class="card-footer">
         <span class="mr-2 float-right">
