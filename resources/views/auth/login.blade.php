@@ -10,7 +10,7 @@ style="background:url({{asset('')}});background-size:cover;height:300px;">
         <h6 style="text-align: center; font-weight: bold;">
         駆け出しエンジニア向け情報共有サイトです。
         </br>日々の学習におけるエラーや出来事を共有し、ユーザー同士が互いに成長する環境を提供します。
-        </br>タスクを共有することでやる気を向上させましょう
+        </br>タスクを共有することでやる気を向上させましょう！
         </p>
     </div>
 </div>
