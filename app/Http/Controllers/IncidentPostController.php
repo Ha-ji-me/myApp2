@@ -147,6 +147,7 @@ class IncidentPostController extends Controller
         $this->authorize('delete', $incidentPost);
 
         $incidentPost->comments()->delete();
+        $incidentPost->favorites()->delete();
         $incidentPost->delete();
         return redirect()->route('home')->with('message', '投稿を削除しました');
     }
