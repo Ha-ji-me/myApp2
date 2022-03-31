@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\IncidentPost;
 use App\Models\Favorite;
 use Storage;
+use JD\Cloudder\Facades\Cloudder;
 
 class IncidentPostController extends Controller
 {
@@ -54,14 +55,27 @@ class IncidentPostController extends Controller
         $incidentPost->body=$request->body;
         $incidentPost->user_id=auth()->user()->id;
 
+        // if (request('image'))
+        // {
+        //     $original = request()->file('image')->getClientOriginalName();
+        //      // 日時追加
+        //     $name = date('Ymd_His').'_'.$original;
+        //     request()->file('image')->move('storage/images', $name);
+
+        //     $incidentPost->image = $name;
+        // }
+
+        //Cloudinary用記述
         if (request('image'))
         {
-            $original = request()->file('image')->getClientOriginalName();
-             // 日時追加
-            $name = date('Ymd_His').'_'.$original;
-            request()->file('image')->move('storage/images', $name);
+            $img = request()->file('image')->getRealPath();
+            Cloudder::upload($img, null);
+            $publicId = Cloudder::getPublicId();
+            $logoUrl = Cloudder::secureShow($publicId);
+            $incidentPost->public_id  = $publicId;
 
-            $incidentPost->image = $name;
+            $incidentPost->image = $logoUrl;
+            $incidentPost->public_id = $publicId;
         }
 
         // AWS用記述
@@ -124,11 +138,25 @@ class IncidentPostController extends Controller
         $incidentPost->title=$inputs['title'];
         $incidentPost->body=$inputs['body'];
 
-        if(request('image')){
-            $original=request()->file('image')->getClientOriginalName();
-            $name=date('Ymd_His').'_'.$original;
-            $file=request()->file('image')->move('storage/images', $name);
-            $incidentPost->image=$name;
+        //通常の記述
+        // if(request('image')){
+        //     $original=request()->file('image')->getClientOriginalName();
+        //     $name=date('Ymd_His').'_'.$original;
+        //     $file=request()->file('image')->move('storage/images', $name);
+        //     $incidentPost->image=$name;
+        // }
+
+        //Cloudinary用の記述
+        if (request('image'))
+        {
+            $img = request()->file('image')->getRealPath();
+            Cloudder::upload($img, null);
+            $publicId = Cloudder::getPublicId();
+            $logoUrl = Cloudder::secureShow($publicId);
+            $incidentPost->public_id  = $publicId;
+
+            $incidentPost->image = $logoUrl;
+            $incidentPost->public_id = $publicId;
         }
 
         $incidentPost->save();
@@ -145,6 +173,12 @@ class IncidentPostController extends Controller
     public function destroy(IncidentPost $incidentPost)
     {
         $this->authorize('delete', $incidentPost);
+
+        if(isset($incidentPost->public_id))
+        {
+            //モデルと一致したcloudinary上の画像ファイルを削除
+            Cloudder::destroyImage($incidentPost->public_id);
+        }
 
         $incidentPost->comments()->delete();
         $incidentPost->favorites()->delete();

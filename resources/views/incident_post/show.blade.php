@@ -41,8 +41,14 @@
         <div>
             (画像ファイル：{{$incidentPost->image}})
         </div>
-        <img src="{{asset('storage/images/'.$incidentPost->image)}}"
+        <!-- 通常 -->
+        <!-- <img src="{{asset('storage/images/'.$incidentPost->image)}}"
+        class="img-fluid mx-auto d-block" style="height:300px;"> -->
+
+        <!-- Cloudinary用記述 -->
+        <img src="{{ $incidentPost->image }}"
         class="img-fluid mx-auto d-block" style="height:300px;">
+
         <!-- AWS用 -->
         <!-- <img src="{{ Storage::disk('s3')->url("$incidentPost->image")}}"
         class="img-fluid mx-auto d-block" style="height:300px;"> -->

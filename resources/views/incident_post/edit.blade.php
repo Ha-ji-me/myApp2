@@ -39,8 +39,13 @@
                 <div class="form-group">
                     <div>
                         @if($incidentPost->image)
-                        <img src="{{ asset('storage/images/'.$incidentPost->image)}}"
-                        class="img-fluid rmx-auto d-block" style="height:200px;">
+                        <!-- 通常の記述 -->
+                        <!-- <img src="{{ asset('storage/images/'.$incidentPost->image)}}"
+                        class="img-fluid rmx-auto d-block" style="height:200px;"> -->
+
+                        <!-- clouddinary用の記述 -->
+                        <img src="{{ $incidentPost->image }}"
+                        class="img-fluid mx-auto d-block" style="height:300px;">
                         @endif
                     </div>
                     <label for="image">画像（1MBまで）</label>
@@ -48,7 +53,7 @@
                         <input id="image" type="file" name="image">
                     </div>
                 </div>
-                
+
                 <button type="submit" class="btn btn-success">送信する</button>
             </form>
         </div>
