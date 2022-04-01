@@ -3,8 +3,19 @@
 <div class="card mb-4">
     <!-- カードヘッダー -->
     <div class="card-header">
-        <img src="{{asset('storage/avatar/'.($incidentPost->user->avatar??'user_default.jpg'))}}"
-        class="rounded-circle" style="width:40px;height:40px;">
+        <!-- アバター -->
+        <!-- 通常の記述 -->
+        <!-- <img src="{{asset('storage/avatar/'.($incidentPost->user->avatar??'user_default.jpg'))}}"
+        class="rounded-circle" style="width:40px;height:40px;"> -->
+
+        <!-- Cloudinary用の記述 -->
+        @if ($incidentPost->user->avatar === 'user_default.jpg')
+            <img src="https://res.cloudinary.com/dvk1j662j/image/upload/v1648786106/user_default_nu4dfv.jpg"
+                class="rounded-circle" style="width:40px;height:40px;">
+        @else
+            <img src="{{ $incidentPost->user->avatar }}"
+                class="rounded-circle" style="width:40px;height:40px;">
+        @endif
         <div class="text-muted small mr-3">
             <!-- ユーザー名 -->
             {{$incidentPost->user->name ?? '削除されたユーザー'}}
@@ -93,8 +104,12 @@
 @foreach ($incidentPost->comments as $comment)
 <div class="card mb-4">
     <div class="card-header">
-        <img src="{{asset('storage/avatar/'.($comment->user->avatar??'user_default.jpg'))}}"
+        <!-- アバター -->
+        <!-- <img src="{{asset('storage/avatar/'.($comment->user->avatar??'user_default.jpg'))}}"
+        class="rounded-circle" style="width:40px;height:40px;"> -->
+        <img src="{{ $comment->user->avatar }}"
         class="rounded-circle" style="width:40px;height:40px;">
+
         <div class="text-muted small mr-3">
         {{$comment->user->name ?? '削除されたユーザー'}}
         </div>

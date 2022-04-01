@@ -23,8 +23,20 @@
             <div class="card mb-4">
                 <div class="card-header">
                     <div class="media flex-wrap w-100 align-items-center">
-                        <img src="{{asset('storage/avatar/'.($todoPost->user->avatar??'user_default.jpg'))}}"
-                        class="rounded-circle" style="width:40px;height:40px;">
+                        <!-- アバター -->
+                        <!-- 通常の記述 -->
+                        <!-- <img src="{{asset('storage/avatar/'.($todoPost->user->avatar??'user_default.jpg'))}}"
+                        class="rounded-circle" style="width:40px;height:40px;"> -->
+
+                        <!-- Cloudinary用の記述 -->
+                        @if ($todoPost->user->avatar === 'user_default.jpg')
+                            <img src="https://res.cloudinary.com/dvk1j662j/image/upload/v1648786106/user_default_nu4dfv.jpg"
+                                class="rounded-circle" style="width:40px;height:40px;">
+                        @else
+                            <img src="{{ $todoPost->user->avatar }}"
+                                class="rounded-circle" style="width:40px;height:40px;">
+                        @endif
+                        <!-- タイトル -->
                         <div class="media-body ml-3">
                             <a href="{{route('incident-post.show', $todoPost)}}" class="text-dark">
                                 {{$todoPost->title}}
