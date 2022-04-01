@@ -156,8 +156,17 @@
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 <!-- ログインユーザーのプロフィール画像も表示 -->
-                                <img src="{{asset('storage/avatar/'.($user->avatar??'user_default.jpg'))}}"
+                                <!-- 通常の記述 -->
+                                <!-- <img src="{{asset('storage/avatar/'.($user->avatar??'user_default.jpg'))}}"
+                                    class="rounded-circle" style="width:40px;height:40px;"> -->
+                                <!-- Cloudinary用の記述 -->
+                                @if ($user->avatar === 'user_default.jpg')
+                                <img src="https://res.cloudinary.com/dvk1j662j/image/upload/v1648786106/user_default_nu4dfv.jpg"
                                     class="rounded-circle" style="width:40px;height:40px;">
+                                @else
+                                <img src="{{ $user->avatar }}"
+                                    class="rounded-circle" style="width:40px;height:40px;">
+                                @endif
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
 

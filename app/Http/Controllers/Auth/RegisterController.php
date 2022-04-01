@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use JD\Cloudder\Facades\Cloudder;
 
 class RegisterController extends Controller
 {
@@ -73,12 +74,25 @@ class RegisterController extends Controller
         ];
 
         //avatarの保存
+        //通常の記述
+        // if (request()->hasFile('avatar')) {
+        //     $name = request()->file('avatar')->getClientOriginalName();
+        //     $avatar = date('Ymd_His').'_'.$name;
+        //     request()->file('avatar')->storeAs('public/avatar',$avatar);
+
+        //     $attr['avatar'] = $avatar;
+        // }
+
+        //Cloudinary用の記述
         if (request()->hasFile('avatar')) {
-            $name = request()->file('avatar')->getClientOriginalName();
-            $avatar = date('Ymd_His').'_'.$name;
-            request()->file('avatar')->storeAs('public/avatar',$avatar);
+            $avatarImg = request()->file('avatar')->getRealPath();
+            Cloudder::upload($avatarImg, null);
+            $publicId = Cloudder::getPublicId();
+            $logoUrl = Cloudder::secureShow($publicId);
+
             //avatarファイル名をデータに追加
-            $attr['avatar'] = $avatar;
+            $attr['avatar'] = $logoUrl;
+            $attr['public_id'] = $publicId;
         }
 
         $user = User::create($attr);
