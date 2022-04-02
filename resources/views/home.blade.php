@@ -39,12 +39,12 @@
 
                         <!-- Cloudinary用の記述 -->
                         @if ($incidentPost->user->avatar === 'user_default.jpg')
-                                <img src="https://res.cloudinary.com/dvk1j662j/image/upload/v1648786106/user_default_nu4dfv.jpg"
-                                    class="rounded-circle" style="width:40px;height:40px;">
-                                @else
-                                <img src="{{ $incidentPost->user->avatar }}"
-                                    class="rounded-circle" style="width:40px;height:40px;">
-                                @endif
+                            <img src="https://res.cloudinary.com/dvk1j662j/image/upload/v1648786106/user_default_nu4dfv.jpg"
+                                class="rounded-circle" style="width:40px;height:40px;">
+                        @else
+                            <img src="{{ $incidentPost->user->avatar }}"
+                                class="rounded-circle" style="width:40px;height:40px;">
+                        @endif
                         <!-- タイトル -->
                         <div class="media-body ml-3 "><a href="{{route('incident-post.show',$incidentPost)}}" class="text-dark">{{$incidentPost->title}}</a>
                             <!-- ユーザー名 -->
