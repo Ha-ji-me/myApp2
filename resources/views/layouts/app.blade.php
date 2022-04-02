@@ -165,7 +165,7 @@
                                 <img src="https://res.cloudinary.com/dvk1j662j/image/upload/v1648786106/user_default_nu4dfv.jpg"
                                     class="rounded-circle" style="width:40px;height:40px;">
                                 @else
-                                <img src="{{ $user->avatar }}"
+                                <img src="{{ Auth::user()->avatar }}"
                                     class="rounded-circle" style="width:40px;height:40px;">
                                 @endif
                                     {{ Auth::user()->name }} <span class="caret"></span>
