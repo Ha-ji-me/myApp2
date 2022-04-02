@@ -1,7 +1,9 @@
 @extends('layouts.app')
 @section('content')
 
-<h1 class="mt4">ユーザー一覧</h1>
+<div class="ml-2 mb-3">
+    <h2 style="text-align:center">ユーザーアカウント一覧<h2>
+</div>
 
 @if(session('message'))
 <div class="alert alert-success">{{session('message')}}</div>
@@ -26,8 +28,17 @@
             <td>{{$user->email}}</td>
             <!-- アバター表示 -->
             <td>
-                <img src="{{asset('storage/avatar/'.($user->avatar??'user_default.jpg'))}}"
-                class="rounded-circle" style="width:40px;height:40px;">
+                <!-- <img src="{{asset('storage/avatar/'.($user->avatar??'user_default.jpg'))}}"
+                class="rounded-circle" style="width:40px;height:40px;"> -->
+                <!-- cloudinary用 -->
+                @if ($user->avatar === 'user_default.jpg')
+                    <img src="https://res.cloudinary.com/dvk1j662j/image/upload/v1648786106/user_default_nu4dfv.jpg"
+                        class="rounded-circle" style="width:40px;height:40px;">
+                @else
+                    <img src="{{ $user->avatar }}"
+                        class="rounded-circle" style="width:40px;height:40px;">
+                @endif
+
             </td>
             <!-- 編集ボタン -->
             <td>
