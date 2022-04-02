@@ -159,8 +159,9 @@
                                 <!-- 通常の記述 -->
                                 <!-- <img src="{{asset('storage/avatar/'.($user->avatar??'user_default.jpg'))}}"
                                     class="rounded-circle" style="width:40px;height:40px;"> -->
+
                                 <!-- Cloudinary用の記述 -->
-                                @if ($user->avatar === 'user_default.jpg')
+                                @if ( Auth::user()->avatar === 'user_default.jpg')
                                 <img src="https://res.cloudinary.com/dvk1j662j/image/upload/v1648786106/user_default_nu4dfv.jpg"
                                     class="rounded-circle" style="width:40px;height:40px;">
                                 @else
