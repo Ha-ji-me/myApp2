@@ -8,6 +8,7 @@ use App\Models\Role;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\storage;
+use JD\Cloudder\Facades\Cloudder;
 
 class ProfileController extends Controller
 {
@@ -40,17 +41,37 @@ class ProfileController extends Controller
         $inputs['password'] = Hash::make($inputs['password']);
 
         //アバター保存
-        if(request('avatar'))
+        // if(request('avatar'))
+        // {
+        //     if($user->avatar !== 'user_default.jpg')
+        //     {
+        //         $oldAvatar = 'public/avatar/'.$user->avatar;
+        //         Storage::delete($oldAvatar);
+        //     }
+        //     $name = request()->file('avatar')->getClientOriginalName();
+        //     $avatar = date('Ymd_His').'_'.$name;
+        //     request()->file('avatar')->storeAs('public/avatar',$avatar);
+        //     $inputs['avatar'] = $avatar;
+        // }
+
+        ///Cloudinary用記述
+        if(request()->hasFile('avatar'))
         {
-            if($user->avatar!=='user_default.jpg')
+            if($user->avatar !== 'user_default.jpg')
             {
-                $oldAvatar = 'public/avatar/'.$user->avatar;
-                Storage::delete($oldAvatar);
+                if(isset($user->public_id))
+                {
+                    Cloudder::destroyImage($user->public_id);
+                }
+
             }
-            $name = request()->file('avatar')->getClientOriginalName();
-            $avatar = date('Ymd_His').'_'.$name;
-            request()->file('avatar')->storeAs('public/avatar',$avatar);
-            $inputs['avatar'] = $avatar;
+            $avatarImg = request()->file('avatar')->getRealPath();
+            Cloudder::upload($avatarImg, null);
+            $publicId = Cloudder::getPublicId();
+            $logoUrl = Cloudder::secureShow($publicId);
+
+            $inputs['avatar'] = $logoUrl;
+
         }
 
         $user->update($inputs);

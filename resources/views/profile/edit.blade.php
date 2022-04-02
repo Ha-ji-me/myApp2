@@ -37,8 +37,16 @@
 
                     <div class="form-group">
                         <label for="avatar">アバター変更（サイズは1MBまで）</label>
-                        <img src="{{asset('storage/avatar/'.($user->avatar??'user_default.jpg'))}}"
-                        class="d-block rounded-circle mb-3" style="height:100px;width:100px;">
+                        <!-- <img src="{{asset('storage/avatar/'.($user->avatar??'user_default.jpg'))}}"
+                        class="d-block rounded-circle mb-3" style="height:100px;width:100px;"> -->
+                        <!-- Cloudinary用 -->
+                        @if ($user->avatar === 'user_default.jpg')
+                            <img src="https://res.cloudinary.com/dvk1j662j/image/upload/v1648786106/user_default_nu4dfv.jpg"
+                            class="d-block rounded-circle mb-3" style="height:100px;width:100px;">
+                        @else
+                            <img src="{{ $user->avatar }}"
+                            class="d-block rounded-circle mb-3" style="height:100px;width:100px;">
+                        @endif
                         <div>
                             <input id="avatar" type="file" name="avatar">
                         </div>
